@@ -13,7 +13,6 @@
       <td class="text-xs-left">{{ props.item.vencimiento }}</td>
     </template>
   </v-data-table>
-  <contacto :dialog="dialog" :propiedad="propiedadTarget"></contacto>
   </div>
 </template>
 <script>
@@ -35,29 +34,14 @@
           { text: 'Inquilino', align:'left', value: 'inquilino'},
           { text: 'Contacto', align:'left', value: 'contacto' },
           { text: 'Vencimiento de Contrato', align: 'left', value: 'vencimiento' },
-        ],
-        items: [
-          {
-            value: false,
-            direccion: 'Belgrano 1266',
-            inquilino: 'Esteban Bisocoli Contrera',
-            vencimiento: '6/11/2018'
-
-          },
-        {
-            value: false,
-            direccion: 'Constitucion 484',
-            inquilino: 'Sebastian Villegas Zorita',
-            vencimiento: '08/06/2018'
-
-          }
         ]
       }
     },
     methods: {
-      openDialog(event) {
-        this.dialog = true
-        this.propiedadTarget = event
+    },
+    computed: {
+      items() {
+        return this.$store.state.contratos;
       }
     }
   }
